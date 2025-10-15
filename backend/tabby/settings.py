@@ -16,7 +16,6 @@ ALLOWED_HOSTS = ["*"]
 USE_X_FORWARDED_HOST = True
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -190,12 +189,10 @@ for key in [
 ]:
     globals()[key] = os.getenv(key)
 
-
 for key in [
     "GITHUB_SPONSORS_MIN_PAYMENT",
 ]:
     globals()[key] = int(globals()[key]) if globals()[key] else None
-
 
 for key in [
     "CONNECTION_GATEWAY_AUTH_CA",
@@ -211,12 +208,10 @@ if GITHUB_ELIGIBLE_SPONSORSHIPS:
 else:
     GITHUB_ELIGIBLE_SPONSORSHIPS = []
 
-
 STATIC_URL = "/static/"
 if FRONTEND_BUILD_DIR.exists():
     STATICFILES_DIRS = [FRONTEND_BUILD_DIR]
 STATIC_ROOT = BASE_DIR / "public"
-
 
 if FRONTEND_URL or CORS_EXTRA_URL:
     cors_url = CORS_EXTRA_URL or FRONTEND_URL
@@ -256,3 +251,5 @@ if FRONTEND_URL:
         CSRF_COOKIE_SECURE = True
 else:
     LOGIN_REDIRECT_URL = '/'
+
+REDIRECT_IS_HTTPS = os.getenv("REDIRECT_IS_HTTPS", "True").lower() == "true"
