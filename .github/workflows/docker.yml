@@ -10,7 +10,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: u8f69/tabby-web
+  IMAGE_NAME: ovinc-cn/tabbyweb
 
 
 jobs:
